@@ -22,13 +22,10 @@
     id _waitForCardDealBlock;
     id _connectionTimeoutBlock;
 }
-@property (nonatomic, assign) KATSocketState socketState;
+@property (nonatomic, readwrite) KATSocketState socketState;
 @end
 
 @implementation KATSocketShuttle
-
-
-@synthesize socketState = _socketState;
 
 -(id)initWithServerURL:(NSURL *)serverURL delegate:(id<KATSocketShuttleDelegate>)delegate {
     if((self = [super init])) {
