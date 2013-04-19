@@ -3,9 +3,9 @@ Pod::Spec.new do |s|
   s.version  = '0.1'
   s.license  = 'MIT'
   s.summary  = 'A higher-level API for SocketRocket with reachability and reconnect'
-  s.homepage = 'https://github.com/mk/KATSocketRocket'
+  s.homepage = 'https://github.com/mk/SocketShuttle'
   s.authors  = { 'Martin Kavalar' => 'mk@katercalling.com' }
-  s.source   = { :git => 'https://github.com/mk/KATSocketRocket', :tag => '0.1' }
+  s.source   = { :git => 'https://github.com/mk/SocketShuttle', :tag => '0.1' }
   s.source_files = 'SocketShuttle/*.{h,m,c}'
   s.requires_arc = true
 
