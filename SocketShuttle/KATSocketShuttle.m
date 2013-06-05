@@ -10,10 +10,17 @@
 #import "Reachability.h"
 
 
-#define KATLogVerbose NSLog
-#define KATLogWarning NSLog
-#define KATLogError   NSLog
-#define KATLog        NSLog
+#ifdef DEBUG_SOCKET_SHUTTLE
+#  define KATLogVerbose NSLog
+#  define KATLogWarning NSLog
+#  define KATLogError   NSLog
+#  define KATLog        NSLog
+#else
+#  define KATLogVerbose(...)
+#  define KATLogWarning(...)
+#  define KATLogError(...)
+#  define KATLog(...)
+#endif
 
 @interface KATSocketShuttle () <SRWebSocketDelegate> {
     SRWebSocket *_socket;
