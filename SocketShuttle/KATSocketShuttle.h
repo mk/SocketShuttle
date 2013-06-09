@@ -6,8 +6,8 @@
 //  Copyright (c) 2011-2013 kater calling GmbH All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
 #import <SystemConfiguration/CaptiveNetwork.h>
-#import <SocketRocket/SRWebSocket.h>
 
 typedef enum {
     KATSocketStateOffline,       // no network, set via reachability callbacks

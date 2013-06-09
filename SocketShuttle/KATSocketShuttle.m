@@ -8,6 +8,7 @@
 
 #import "KATSocketShuttle.h"
 #import "Reachability.h"
+#import <SocketRocket/SRWebSocket.h>
 
 
 #ifdef DEBUG_SOCKET_SHUTTLE
