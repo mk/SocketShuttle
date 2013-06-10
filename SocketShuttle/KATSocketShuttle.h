@@ -34,7 +34,7 @@ static  NSString    *const     KATGameServiceSocketErrorKey                   = 
 
 @interface KATSocketShuttle : NSObject
 
--(id)initWithServerURL:(NSURL *)serverURL delegate:(id<KATSocketShuttleDelegate>) delegate;
+-(id)initWithRequest:(NSURLRequest *)request delegate:(id<KATSocketShuttleDelegate>) delegate;
 
 -(void)send:(NSString *)message;
 -(void)disconnect;
@@ -44,7 +44,7 @@ static  NSString    *const     KATGameServiceSocketErrorKey                   = 
 @property (nonatomic, readonly) KATSocketState socketState;
 @property (nonatomic, assign) id <KATSocketShuttleDelegate> delegate;
 @property (nonatomic)   NSTimeInterval  timeoutInterval; // defaults to 30 seconds
-@property (nonatomic, readonly) NSURL *serverURL;
+@property (nonatomic, readonly) NSURLRequest *URLRequest;
 
 @end
 
