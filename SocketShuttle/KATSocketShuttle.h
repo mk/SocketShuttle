@@ -55,7 +55,11 @@ static  NSString    *const     KATGameServiceSocketErrorKey                   = 
 
 // message will either be an NSString if the server is using text
 // or NSData if the server is using binary
+
+@required
 - (void)socket:(KATSocketShuttle *)socket didReceiveMessage:(id)message;
+
+@optional
 - (void)socketDidOpen:(KATSocketShuttle *)socket;
 - (void)socket:(KATSocketShuttle *)socket didFailWithError:(NSError *)error;
 - (void)socket:(KATSocketShuttle *)socket didCloseWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean;
