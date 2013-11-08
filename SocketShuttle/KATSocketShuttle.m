@@ -74,6 +74,7 @@
 }
 
 - (void)dealloc {
+    [self removeObserver:self forKeyPath:@"self.socketState"];
     [self cancelConnectingTimer];
 }
 
