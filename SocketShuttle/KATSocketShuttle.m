@@ -26,6 +26,7 @@
     SRWebSocket *_socket;
     Reachability *_reachability;
     BOOL _tryReconnectImmediatly;
+    BOOL _observerWasAdded;
     id _waitForCardDealBlock;
     id _connectionTimeoutBlock;
 }
@@ -38,6 +39,7 @@
     if((self = [super init])) {
 		_serverURL = serverURL;
 		_delegate = delegate;
+        _observerWasAdded = NO;
 		
         KATLogVerbose(@"SocketService#init");
         self.socketState = KATSocketStateConnecting;
@@ -74,7 +76,9 @@
 }
 
 - (void)dealloc {
-    [self removeObserver:self forKeyPath:@"self.socketState"];
+    if(_observerWasAdded) {
+        [self removeObserver:self forKeyPath:@"self.socketState"];
+    }
     [self cancelConnectingTimer];
 }
 
@@ -108,6 +112,7 @@
     [self startConnectingTimer];
     _socket = [[SRWebSocket alloc] initWithURLRequest:[NSURLRequest requestWithURL:self.serverURL]];
 	[self addObserver:self forKeyPath:@"self.socketState" options:0 context:NULL];
+    _observerWasAdded = YES;
     _socket.delegate = self;
     [_socket open];
 }
