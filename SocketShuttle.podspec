@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'SocketShuttle'
-  s.version  = '0.3'
+  s.version  = '0.4'
   s.license  = 'MIT'
   s.summary  = 'A higher-level API for SocketRocket with reachability and reconnect.'
   s.homepage = 'https://github.com/mk/SocketShuttle'
@@ -9,7 +9,8 @@ Pod::Spec.new do |s|
   s.source_files = 'SocketShuttle/*.{h,m,c}'
   s.requires_arc = true
   s.ios.deployment_target = '5.0'
+  s.libraries             = "icucore"
 
-  s.dependency "SocketRocket", "~> 0.2.0"
+  s.dependency "SocketRocket", '~> 0.3.1-beta2'
   s.dependency "Reachability", "~> 3.1"
 end

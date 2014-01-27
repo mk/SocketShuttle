@@ -1,13 +1,18 @@
 PODS:
   - Reachability (3.1.0)
-  - SocketRocket (0.2.0)
+  - SocketRocket (0.3.1-beta2)
 
 DEPENDENCIES:
   - Reachability (~> 3.1)
-  - SocketRocket (~> 0.2.0)
+  - SocketRocket (from `https://github.com/mk/SocketRocket.git`, branch `http-basic-auth`)
+
+EXTERNAL SOURCES:
+  SocketRocket:
+    :branch: http-basic-auth
+    :git: https://github.com/mk/SocketRocket.git
 
 SPEC CHECKSUMS:
   Reachability: ba94ecd4eaa037be3d0588b38956672588530c5b
-  SocketRocket: bca43a94bd9aac3a629df42c06843402399ee67b
+  SocketRocket: 9cbe08469513356cddc0afcab1ff160bd190296a
 
-COCOAPODS: 0.18.1
+COCOAPODS: 0.29.0
