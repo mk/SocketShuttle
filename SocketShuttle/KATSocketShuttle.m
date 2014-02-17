@@ -76,6 +76,10 @@
     return self;
 }
 
+-(id)initWithServerURL:(NSURL *)serverURL delegate:(id<KATSocketShuttleDelegate>)delegate {
+    return [self initWithRequest:[NSURLRequest requestWithURL:serverURL] delegate:delegate];
+}
+
 - (void)dealloc {
     if(_observerWasAdded) {
         [self removeObserver:self forKeyPath:@"self.socketState"];
