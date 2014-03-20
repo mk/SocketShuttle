@@ -6,8 +6,8 @@
 //  Copyright (c) 2011-2013 kater calling GmbH All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
 #import <SystemConfiguration/CaptiveNetwork.h>
-#import <SocketRocket/SRWebSocket.h>
 
 typedef enum {
     KATSocketStateOffline,       // no network, set via reachability callbacks
@@ -15,6 +15,11 @@ typedef enum {
     KATSocketStateConnected,
     KATSocketStateDisconnected
 } KATSocketState;
+
+typedef enum {
+    KATSocketConnectConditionAlways,
+    KATSocketConnectConditionWLAN
+} KATSocketConnectCondition;
 
 
 NSString *NSStringFromSocketState(KATSocketState state);
@@ -34,7 +39,9 @@ static  NSString    *const     KATGameServiceSocketErrorKey                   = 
 
 @interface KATSocketShuttle : NSObject
 
--(id)initWithServerURL:(NSURL *)serverURL delegate:(id<KATSocketShuttleDelegate>) delegate;
+-(id)initWithRequest:(NSURLRequest *)request delegate:(id<KATSocketShuttleDelegate>) delegate connectConditions:(KATSocketConnectCondition)connectConditions;
+-(id)initWithRequest:(NSURLRequest *)request delegate:(id<KATSocketShuttleDelegate>)delegate;
+-(id)initWithServerURL:(NSURL *)serverURL delegate:(id<KATSocketShuttleDelegate>)delegate;
 
 -(void)send:(NSString *)message;
 -(void)disconnect;
@@ -45,6 +52,8 @@ static  NSString    *const     KATGameServiceSocketErrorKey                   = 
 @property (nonatomic, assign) id <KATSocketShuttleDelegate> delegate;
 @property (nonatomic)   NSTimeInterval  timeoutInterval; // defaults to 30 seconds
 @property (nonatomic, readonly) NSURL *serverURL;
+@property (nonatomic, strong) NSURLRequest *request;
+@property (nonatomic, readonly) KATSocketConnectCondition connectConditions;
 
 @end
 
@@ -53,6 +62,13 @@ static  NSString    *const     KATGameServiceSocketErrorKey                   = 
 
 // message will either be an NSString if the server is using text
 // or NSData if the server is using binary
+
+@required
 - (void)socket:(KATSocketShuttle *)socket didReceiveMessage:(id)message;
+
+@optional
+- (void)socketDidOpen:(KATSocketShuttle *)socket;
+- (void)socket:(KATSocketShuttle *)socket didFailWithError:(NSError *)error;
+- (void)socket:(KATSocketShuttle *)socket didCloseWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean;
 
 @end
