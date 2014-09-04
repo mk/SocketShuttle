@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'SocketShuttle'
-  s.version  = '0.5'
+  s.version  = '0.5.1'
   s.license  = 'MIT'
   s.summary  = 'A higher-level API for SocketRocket with reachability and reconnect.'
   s.homepage = 'https://github.com/mk/SocketShuttle'
