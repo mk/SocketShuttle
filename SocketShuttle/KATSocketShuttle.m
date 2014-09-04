@@ -123,8 +123,10 @@
     KATLogVerbose(@"SocketService#connect serverURL = %@", self.request);
     [self startConnectingTimer];
     _socket = [[SRWebSocket alloc] initWithURLRequest:self.request];
-    [self addObserver:self forKeyPath:@"self.socketState" options:0 context:NULL];
-    _observerWasAdded = YES;
+    if(!_observerWasAdded) {
+        [self addObserver:self forKeyPath:@"self.socketState" options:0 context:NULL];
+        _observerWasAdded = YES;
+    }
     _socket.delegate = self;
     [_socket open];
 }
